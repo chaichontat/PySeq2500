@@ -1085,16 +1085,16 @@ def get_com_ports(machine = 'HiSeq2500'):
     ids = []
     com_ports = []
     for d in devices:
-        if 'USB Serial Port' in d.caption:
-            try:
+        try:
+            if 'USB Serial Port' in d.caption:
                 ids.append(d.deviceid)
                 caption = d.caption
                 id_start = caption.find('(')+1
                 id_end = caption.find(')')
                 caption = caption[id_start:id_end]
                 com_ports.append(caption)
-            except:
-                pass
+        except:
+            pass
 
     # Match instruments to ports
     matched_ports = {}
